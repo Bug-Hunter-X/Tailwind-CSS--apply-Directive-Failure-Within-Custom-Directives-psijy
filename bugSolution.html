@@ -1,0 +1,15 @@
+The most straightforward solution is to avoid using `@apply` within the custom directive and instead apply the classes directly.
+
+```html
+<div class="bg-gray-100">
+  <CustomDirective />
+</div>
+
+<script>
+  function CustomDirective() {
+    return <div class="bg-blue-500"></div>; //Directly apply classes
+  }
+</script>
+```
+
+This approach bypasses the potential resolution issues of `@apply` in a dynamic environment.  If you need more complex dynamic class generation, consider creating utility functions to build the class string before applying it. 
