@@ -1,0 +1,15 @@
+The issue arises when using Tailwind's `@apply` directive within a custom directive.  The `@apply` directive, while convenient, doesn't always resolve correctly within this context, leading to unexpected styles not being applied. This is especially problematic when working with complex nested components or dynamic class generation, where predictable style application is crucial.
+
+```html
+<div class="bg-gray-100">
+  <CustomDirective />
+</div>
+
+<script>
+  function CustomDirective() {
+    return <div class="@apply bg-blue-500"></div>;
+  }
+</script>
+```
+
+In this example, the `bg-blue-500` class might not apply correctly, resulting in the background remaining gray instead of becoming blue. The reason is that `@apply`'s style resolution may not work as intended within the dynamic environment of a custom directive. This can lead to debugging difficulties since the issue is not always immediately apparent in the component's code.
